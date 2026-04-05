@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Draw — Holo Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <h1 class="loading-title">Air Interface</h1>
+            <p class="loading-status">Initializing God Eyes…</p>
+        </div>
+    </div>
+
+    <video id="webcam" autoplay playsinline></video>
+    <canvas id="draw-canvas"></canvas>
+    <canvas id="cursor-canvas"></canvas>
+
+    <header class="toolbar" id="toolbar">
+        <div class="toolbar-brand">
+            <span class="brand-text">Air Interface</span>
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="toolbar-group">
+            <span class="toolbar-label">Mode</span>
+            <div id="mode-indicator" class="mode-pill mode-idle">IDLE</div>
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="toolbar-group">
+            <span class="toolbar-label">Draw Size</span>
+            <input type="range" id="draw-size" class="slider" min="1" max="25" value="5">
+            <span id="draw-size-val" class="toolbar-value">5</span>
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="toolbar-group">
+            <span class="toolbar-label">Erase Size</span>
+            <input type="range" id="erase-size" class="slider" min="10" max="80" value="25">
+            <span id="erase-size-val" class="toolbar-value">25</span>
+        </div>
+        <div class="toolbar-divider"></div>
+        <button id="help-btn" class="toolbar-btn" title="Toggle Help (?)"><span>? Help</span></button>
+    </header>
+
+    <div id="help-overlay" class="help-overlay hidden">
+        <div class="help-panel">
+            <h2>How to Air Draw</h2>
+            <div class="help-grid">
+                <div class="help-item">
+                    <h3>Draw (Pinch)</h3>
+                    <p>Pinch Thumb + Index.</p>
+                </div>
+                <div class="help-item">
+                    <h3>Erase (Wipe)</h3>
+                    <p>Touch Index + Middle.</p>
+                </div>
+                <div class="help-item">
+                    <h3>Color Switch</h3>
+                    <p>Pinch twice for switching.</p>
+                </div>
+                <div class="help-item">
+                    <h3>Clear Canvas</h3>
+                    <p>Hold fist for 3 seconds.</p>
+                </div>
+            </div>
+            <p class="help-dismiss">Press ? or click to dismiss</p>
+        </div>
+    </div>
+
+    <div id="color-indicator" class="color-indicator"></div>
+    <div id="debug-panel" class="debug-panel hidden">
+        <h3>Gesture Debug</h3>
+        <div class="debug-row"><span>Mode:</span> <span id="debug-state">IDLE</span></div>
+        <div class="debug-row"><span>Draw Size:</span> <span id="debug-draw-size">5</span></div>
+        <div class="debug-row"><span>Erase Size:</span> <span id="debug-erase-size">25</span></div>
+        <div class="debug-row"><span>Stability:</span> <span id="debug-stability">0ms</span></div>
+        <div class="debug-row"><span>Charge %:</span> <span id="debug-countdown">0%</span></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="js/tracker.js"></script>
+    <script src="js/gesture.js"></script>
+    <script src="js/drawing.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
